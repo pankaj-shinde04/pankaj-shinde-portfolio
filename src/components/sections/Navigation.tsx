@@ -36,7 +36,7 @@ const Navigation = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const MUSIC_URL = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+  const MUSIC_URL = '/images/my-song.mp3';
 
   useEffect(() => {
     audioRef.current = new Audio(MUSIC_URL);
@@ -49,7 +49,7 @@ const Navigation = () => {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    const handleScroll = () => setIsScrolled(window.scrollY > 60);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -74,93 +74,136 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="w-full fixed top-0 z-50">
-
-      {/* ── Background wrapper (animates padding on scroll) ── */}
-      <motion.div
-        animate={
-          isScrolled
-            ? { paddingTop: 10, paddingBottom: 10 }
-            : { paddingTop: 28, paddingBottom: 28 }
-        }
-        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        className={`transition-[background,border-color,box-shadow] duration-300 ${isScrolled
-            ? 'backdrop-blur-xl bg-background/85 border-b border-border shadow-lg'
-            : 'bg-transparent'
-          }`}
-      >
-        {/* ── Inner row ── */}
-        <div className="flex justify-between items-center max-w-7xl mx-auto px-6">
-
-          {/* Logo */}
-          <a href="#home" className="flex items-center group">
-            <motion.span
-              animate={{ fontSize: isScrolled ? '1.05rem' : '1.4rem' }}
-              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="font-bold tracking-tighter text-foreground group-hover:text-primary transition-colors whitespace-nowrap"
-            >
-              Pankaj&nbsp;&nbsp;Shinde
-            </motion.span>
-          </a>
-
-          {/* ── Desktop Links ── */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors uppercase tracking-widest"
-              >
-                {link.name}
-              </a>
-            ))}
-
-            <div className="flex items-center gap-3 pl-4 border-l border-border">
-              {/* Music button */}
-              <motion.button
-                onClick={toggleMusic}
-                whileTap={{ scale: 0.9 }}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold transition-all duration-300 ${isPlaying
-                    ? 'border-primary/60 bg-primary/10 text-primary'
-                    : 'border-border bg-transparent text-muted-foreground hover:border-primary/40 hover:text-foreground'
-                  }`}
-                aria-label="Toggle music"
-              >
-                <MusicIcon playing={isPlaying} />
-                <span className="hidden lg:inline">
-                  {isPlaying ? 'Playing' : 'Music'}
+    <>
+      {/* ════════════ FULL-WIDTH TOP NAVBAR (visible at top) ════════════ */}
+      <AnimatePresence>
+        {!isScrolled && (
+          <motion.nav
+            key="full-nav"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="w-full fixed top-0 z-50 py-7 bg-transparent"
+          >
+            <div className="flex justify-between items-center max-w-7xl mx-auto px-6">
+              {/* Logo */}
+              <a href="#home" className="flex items-center group">
+                <span className="text-2xl font-bold tracking-tighter text-foreground group-hover:text-primary transition-colors whitespace-nowrap">
+                  Pankaj&nbsp;&nbsp;Shinde
                 </span>
-              </motion.button>
+              </a>
+
+              {/* Desktop links */}
+              <div className="hidden md:flex items-center gap-8">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors uppercase tracking-widest"
+                  >
+                    {link.name}
+                  </a>
+                ))}
+                <div className="pl-4 border-l border-border">
+                  <motion.button
+                    onClick={toggleMusic}
+                    whileTap={{ scale: 0.9 }}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold transition-all duration-300 ${isPlaying
+                      ? 'border-primary/60 bg-primary/10 text-primary'
+                      : 'border-border text-muted-foreground hover:border-primary/40 hover:text-foreground'
+                      }`}
+                  >
+                    <MusicIcon playing={isPlaying} />
+                    <span className="hidden lg:inline"></span>
+                  </motion.button>
+                </div>
+              </div>
+
+              {/* Mobile buttons */}
+              <div className="flex md:hidden items-center gap-3">
+                <motion.button
+                  onClick={toggleMusic}
+                  whileTap={{ scale: 0.9 }}
+                  className={`p-2 rounded-full border transition-all duration-300 ${isPlaying ? 'border-primary/60 bg-primary/10 text-primary' : 'border-border text-muted-foreground'
+                    }`}
+                >
+                  <MusicIcon playing={isPlaying} />
+                </motion.button>
+                <button onClick={() => setIsOpen(!isOpen)} className="p-2 text-foreground">
+                  {isOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
+              </div>
             </div>
-          </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
 
-          {/* ── Mobile Buttons ── */}
-          <div className="flex md:hidden items-center gap-3">
-            <motion.button
-              onClick={toggleMusic}
-              whileTap={{ scale: 0.9 }}
-              className={`p-2 rounded-full border transition-all duration-300 ${isPlaying
-                  ? 'border-primary/60 bg-primary/10 text-primary'
-                  : 'border-border text-muted-foreground'
-                }`}
-              aria-label="Toggle music"
-            >
-              <MusicIcon playing={isPlaying} />
-            </motion.button>
+      {/* ════════════ FLOATING PILL NAVBAR (appears on scroll) ════════════ */}
+      <AnimatePresence>
+        {isScrolled && (
+          <motion.div
+            key="pill-nav"
+            initial={{ opacity: 0, y: -40, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -40, scale: 0.95 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 28 }}
+            className="fixed top-4 left-0 right-0 z-50 flex justify-center pointer-events-none px-4 "
+          >
+            <div className="pointer-events-auto w-full max-w-5xl">
+              <div className="flex items-center justify-between gap-3 px-4 py-3 rounded-2xl border border-white/10 bg-background/80 backdrop-blur-2xl shadow-2xl shadow-black/40">
 
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-foreground"
-              aria-label="Toggle menu"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+                {/* Logo */}
+                <a href="#home" className="shrink-0 group">
+                  <span className="text-base font-bold tracking-tighter text-foreground group-hover:text-primary transition-colors whitespace-nowrap">
+                    Pankaj&nbsp;Shinde
+                  </span>
+                </a>
 
-        </div>
-      </motion.div>
+                {/* Desktop links */}
+                <div className="hidden md:flex items-center gap-5">
+                  {navLinks.map((link) => (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      className="text-xs font-semibold text-muted-foreground hover:text-primary transition-colors uppercase tracking-widest"
+                    >
+                      {link.name}
+                    </a>
+                  ))}
+                </div>
 
-      {/* ── Mobile Full-screen Overlay ── */}
+                {/* Right side */}
+                <div className="flex items-center gap-2 shrink-0">
+                  {/* Music button */}
+                  <motion.button
+                    onClick={toggleMusic}
+                    whileTap={{ scale: 0.9 }}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold transition-all duration-300 ${isPlaying
+                      ? 'border-primary/60 bg-primary/10 text-primary'
+                      : 'border-border text-muted-foreground hover:border-primary/40 hover:text-foreground'
+                      }`}
+                  >
+                    <MusicIcon playing={isPlaying} />
+                    <span className="hidden lg:inline"></span>
+                  </motion.button>
+
+                  {/* Mobile hamburger */}
+                  <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="md:hidden p-1.5 text-foreground"
+                  >
+                    {isOpen ? <X size={20} /> : <Menu size={20} />}
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ════════════ MOBILE FULLSCREEN OVERLAY ════════════ */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -168,7 +211,7 @@ const Navigation = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 top-0 left-0 w-full h-screen bg-background z-50 flex flex-col items-center justify-center gap-8 md:hidden"
+            className="fixed inset-0 top-0 left-0 w-full h-screen bg-background z-[60] flex flex-col items-center justify-center gap-8 md:hidden"
           >
             <button
               onClick={() => setIsOpen(false)}
@@ -207,8 +250,7 @@ const Navigation = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
-    </nav>
+    </>
   );
 };
 
