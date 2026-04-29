@@ -1,3 +1,5 @@
+import type { NextConfig } from 'next';
+
 const nextConfig: NextConfig = {
   images: {
     dangerouslyAllowSVG: true,
@@ -13,3 +15,5 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
 };
+
+export default nextConfig;
