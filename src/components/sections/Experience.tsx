@@ -48,10 +48,10 @@ const Experience = () => {
           >
             <div className="md:col-span-4 sticky top-24">
               <h3 className="text-[32px] md:text-[40px] font-bold text-foreground mb-2">
-                Markitify Media
+               Bradco Studio
               </h3>
               <p className="font-mono text-[14px] text-muted-foreground">
-                JAN 2025 — DEC 2025
+                JAN 2025 — Mar 2025
               </p>
             </div>
             
