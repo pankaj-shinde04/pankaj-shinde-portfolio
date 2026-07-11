@@ -18,6 +18,7 @@ const SKILLS_DATA = [
       { name: "React", icon: "https://skillicons.dev/icons?i=react" },
       // { name: "Next.js", icon: "https://skillicons.dev/icons?i=nextjs" },
       { name: "Redux", icon: "https://skillicons.dev/icons?i=redux" },
+      { name: "Framer Motion", icon: "https://cdn.simpleicons.org/framer/000000", bg: "#FFE500" },
     ]
   },
   {
@@ -26,6 +27,8 @@ const SKILLS_DATA = [
     skills: [
       { name: "Node.js", icon: "https://skillicons.dev/icons?i=nodejs" },
       { name: "Express", icon: "https://skillicons.dev/icons?i=express" },
+      { name: "Socket.io", icon: "https://cdn.simpleicons.org/socketdotio/ffffff" },
+      { name: "JWT", icon: "https://cdn.simpleicons.org/jsonwebtokens/ffffff" },
       // { name: "Java", icon: "https://skillicons.dev/icons?i=java" },
     ]
   },
@@ -44,23 +47,32 @@ const SKILLS_DATA = [
     skills: [
 
       { name: "Git", icon: "https://skillicons.dev/icons?i=git" },
-      { name: "Github", icon: "https://skillicons.dev/icons?i=github" },
+      { name: "Github", icon: "https://skillicons.dev/icons?i=github" },  
       { name: "Vercel", icon: "https://skillicons.dev/icons?i=vercel" },
       { name: "VS Code", icon: "https://skillicons.dev/icons?i=vscode" },
     ]
   }
 ];
 
-const BubbleIcon = ({ skill }: { skill: { name: string, icon: string } }) => {
+const BubbleIcon = ({ skill }: { skill: { name: string; icon: string; bg?: string } }) => {
   return (
     <motion.div
       whileHover={{
         scale: 1.1,
         transition: { duration: 0.2 }
       }}
-      className="group relative flex items-center justify-center p-4 rounded-full aspect-square bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 w-full cursor-help"
+      className="group relative flex items-center justify-center p-4 rounded-full aspect-square border transition-all duration-300 w-full cursor-help"
+      style={
+        skill.bg
+          ? { backgroundColor: skill.bg, borderColor: skill.bg }
+          : undefined
+      }
       title={skill.name}
     >
+      {/* default dark glass bg when no custom bg */}
+      {!skill.bg && (
+        <span className="absolute inset-0 rounded-full bg-white/5 border border-white/10 group-hover:border-primary/50 transition-all duration-300" />
+      )}
       <motion.div
         animate={{
           y: [0, -5, 0],
@@ -72,7 +84,7 @@ const BubbleIcon = ({ skill }: { skill: { name: string, icon: string } }) => {
           ease: "easeInOut",
           delay: Math.random() * 2
         }}
-        className="relative w-8 h-8 sm:w-10 sm:h-10"
+        className="relative w-8 h-8 sm:w-10 sm:h-10 z-10"
       >
         <Image
           src={skill.icon}
