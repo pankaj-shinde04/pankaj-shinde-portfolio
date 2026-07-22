@@ -41,6 +41,19 @@ const projects: Project[] = [
       "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/782ee80b-5dbb-4f60-b9b9-175e776bf731-shubhporwal-me/assets/svgs/nodejs-8.svg",
       "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/782ee80b-5dbb-4f60-b9b9-175e776bf731-shubhporwal-me/assets/svgs/mongodb-23.svg"
     ]
+  },
+  {
+    title: "QuickBasket",
+    description: "Multi-vendor grocery marketplace connecting shoppers with local stores for delivery and pickup.",
+    link: "#",
+    liveUrl: "https://quick-basket-three.vercel.app/",
+    github: "https://github.com/pankaj-shinde04/QuickBasket",
+    bgImage: "/images/quick.jpeg",
+    techIcons: [
+      "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/782ee80b-5dbb-4f60-b9b9-175e776bf731-shubhporwal-me/assets/svgs/react-29.svg",
+      "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/782ee80b-5dbb-4f60-b9b9-175e776bf731-shubhporwal-me/assets/svgs/nodejs-8.svg",
+      "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/782ee80b-5dbb-4f60-b9b9-175e776bf731-shubhporwal-me/assets/svgs/mongodb-23.svg"
+    ]
   }
 ];
 
