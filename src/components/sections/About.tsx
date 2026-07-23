@@ -75,10 +75,10 @@ const About = () => {
                 {/* Placeholder for profile image */}
                 {!imageError ? (
                   <Image
-                    src="/images/profile1.jpeg"
+                    src="/images/profile.png"
                     alt="Pankaj Shinde"
                     fill
-                    sizes="(max-width: 768px) 90vw, 450px"
+                    sizes="(max-width: 768px) 90vw, 450px"  
                     className="object-cover"
                     onError={() => setImageError(true)}
                     priority
