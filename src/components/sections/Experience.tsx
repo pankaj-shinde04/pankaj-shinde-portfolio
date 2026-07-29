@@ -60,7 +60,7 @@ const Experience = () => {
                 <div>
                   <h4 className="text-[24px] font-semibold text-foreground mb-4">Front-End Developer</h4>
                   <p className="text-[18px] text-muted-foreground leading-relaxed mb-6">
-                    Delivered 8+ responsive web interfaces for client projects, improving mobile user engagement by 45% through optimized design and performance enhancements.
+                    {/* Delivered 8+ responsive web interfaces for client projects, improving mobile user engagement by 45% through optimized design and performance enhancements. */}
                   </p>
                   <ul className="space-y-4 text-muted-foreground text-lg">
                     {[

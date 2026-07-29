@@ -16,7 +16,7 @@ const SKILLS_DATA = [
       { name: "Tailwind", icon: "https://skillicons.dev/icons?i=tailwind" },
       { name: "Bootstrap", icon: "https://skillicons.dev/icons?i=bootstrap" },
       { name: "React", icon: "https://skillicons.dev/icons?i=react" },
-      // { name: "Next.js", icon: "https://skillicons.dev/icons?i=nextjs" },
+      { name: "Next.js", icon: "https://skillicons.dev/icons?i=nextjs" },
       { name: "Redux", icon: "https://skillicons.dev/icons?i=redux" },
       { name: "Framer Motion", icon: "https://cdn.simpleicons.org/framer/000000", bg: "#FFE500" },
     ]
