@@ -75,7 +75,7 @@ const About = () => {
                 {/* Placeholder for profile image */}
                 {!imageError ? (
                   <Image
-                    src="/images/profile.png"
+                    src="/images/profile1.png"
                     alt="Pankaj Shinde"
                     fill
                     sizes="(max-width: 768px) 90vw, 450px"  
