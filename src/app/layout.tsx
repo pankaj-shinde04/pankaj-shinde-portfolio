@@ -40,6 +40,10 @@ export const metadata: Metadata = {
   authors: [{ name: "Pankaj Shinde" }],
   creator: "Pankaj Shinde",
   publisher: "Pankaj Shinde",
+   verification: {
+    google: "HB0mtlm1RVA-nXw1SYBnkoYaFfCg4ZCs61JbDrIdmAA",
+  },
+
   robots: {
     index: true,
     follow: true,
