@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     siteName: "Pankaj Shinde Portfolio",
     images: [
       {
-        url: "/images/profile1.png",
+        url: "https://pankaj-shinde.vercel.app/images/profile1.png",
         width: 1200,
         height: 630,
         alt: "Pankaj Shinde - Full Stack Developer",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Pankaj Shinde | Full Stack Developer",
     description: "Full Stack Developer specializing in React, Node.js, Next.js, and modern web technologies.",
-    images: ["/images/profile1.png"],
+    images: ["https://pankaj-shinde.vercel.app/images/profile1.png"],
     creator: "@pankajshinde04",
   },
   icons: {
