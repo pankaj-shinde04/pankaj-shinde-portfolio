@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   creator: "Pankaj Shinde",
   publisher: "Pankaj Shinde",
    verification: {
-    google: "6MaePOtkfmkQAR2LRHfmSwnC9AxqI5DynOjDaVRgxWw",
+    google: "HB0mtlm1RVA-nXw1SYBnkoYaFfCg4ZCs61JbDrIdmAA",
   },
 
   robots: {
