@@ -1,15 +1,11 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://pankaj-shinde.vercel.app'
-
   return {
-    rules: [
-      {
-        userAgent: '*',
-        allow: '/',
-      },
-    ],
-    sitemap: `${baseUrl}/sitemap.xml`,
-  }
+    rules: {
+      userAgent: "*",
+      allow: "/",
+    },
+    sitemap: "https://pankaj-shinde.vercel.app/sitemap.xml",
+  };
 }
